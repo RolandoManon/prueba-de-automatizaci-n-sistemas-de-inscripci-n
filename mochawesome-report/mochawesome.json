@@ -1,0 +1,119 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-11-25T02:03:18.702Z",
+    "end": "2024-11-25T02:03:33.565Z",
+    "duration": 14863,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "019d436f-36fa-4ee3-9c72-825b95d062ef",
+      "title": "",
+      "fullFile": "C:\\Users\\Snook\\OneDrive\\Escritorio\\Prueba Selenium\\tests\\login.js",
+      "file": "\\tests\\login.js",
+      "beforeHooks": [],
+      "afterHooks": [
+        {
+          "title": "\"after all\" hook in \"{root}\"",
+          "fullTitle": "\"after all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 14,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "const allureReport = allure(['generate', './allure-results', '--clean']);\nallureReport.on('exit', (code) => {\n    if (code === 0) {\n        console.log('Reporte generado con éxito.');\n    } else {\n        console.log('Error al generar el reporte.');\n    }\n});",
+          "err": {},
+          "uuid": "42de0608-cf62-4d7f-852f-7426f21de7db",
+          "parentUUID": "019d436f-36fa-4ee3-9c72-825b95d062ef",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a47bee5f-1c9d-41d0-af32-4b998afaec96",
+          "title": "Login",
+          "fullFile": "C:\\Users\\Snook\\OneDrive\\Escritorio\\Prueba Selenium\\tests\\login.js",
+          "file": "\\tests\\login.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Login with standard_user credentials (test fallido)",
+              "fullTitle": "Login Login with standard_user credentials (test fallido)",
+              "timedOut": false,
+              "duration": 14840,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let driver = new Builder().forBrowser('chrome').build();\n// Función para tomar captura de pantalla\nconst takeScreenshot = async (step, driver) => {\n    const screenshot = await driver.takeScreenshot();\n    const screenshotsFolder = path.join(__dirname, 'screenshots');\n    \n    // Crear la carpeta 'screenshots' si no existe\n    if (!fs.existsSync(screenshotsFolder)) {\n        fs.mkdirSync(screenshotsFolder, { recursive: true });\n    }\n    const screenshotPath = path.join(screenshotsFolder, `screenshot_${step}.png`);\n    fs.writeFileSync(screenshotPath, screenshot, 'base64');\n    console.log(`Captura de pantalla tomada: ${screenshotPath}`);\n};\ntry {\n    // Paso 1: Abrir la página\n    await driver.get('https://www.facebook.com');\n    await takeScreenshot('01_open_page', driver); // Captura después de abrir la página\n    // Paso 2: Introducir el nombre de usuario\n    await driver.findElement(By.id('email')).sendKeys('ronal2223@');\n    await takeScreenshot('02_enter_username', driver); // Captura después de introducir el usuario\n    // Paso 3: Introducir la contraseña\n    await driver.findElement(By.css('#pass')).sendKeys('delocho');\n    await takeScreenshot('03_enter_password', driver); // Captura después de introducir la contraseña\n    // Paso 4: Intentar hacer clic en un botón que no existe (esto fallará)\n    await driver.findElement(By.css('[data-testid=\"royal_login_button\"]')).click(); // Elemento incorrecto\n    await takeScreenshot('04_click_login', driver); // Captura después de hacer clic en el botón\n    // Espera para ver el resultado final\n    await driver.sleep(10000);\n    await takeScreenshot('05_final', driver); // Captura final después de la espera\n} catch (err) {\n    console.error(\"Error durante la prueba:\", err);\n    await takeScreenshot('error_scenario', driver); // Captura en caso de error\n} finally {\n    await driver.quit();\n}",
+              "err": {},
+              "uuid": "6aa30cf7-3784-4946-92cb-b66b51abe93d",
+              "parentUUID": "a47bee5f-1c9d-41d0-af32-4b998afaec96",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6aa30cf7-3784-4946-92cb-b66b51abe93d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 14840,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 0
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
