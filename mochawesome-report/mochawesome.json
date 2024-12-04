@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2024-11-25T02:03:18.702Z",
-    "end": "2024-11-25T02:03:33.565Z",
-    "duration": 14863,
+    "start": "2024-12-03T21:34:33.916Z",
+    "end": "2024-12-03T21:34:47.138Z",
+    "duration": 13222,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "019d436f-36fa-4ee3-9c72-825b95d062ef",
+      "uuid": "9a630440-07c1-4d23-8699-00b2b8c87c4d",
       "title": "",
       "fullFile": "C:\\Users\\Snook\\OneDrive\\Escritorio\\Prueba Selenium\\tests\\login.js",
       "file": "\\tests\\login.js",
@@ -28,7 +28,7 @@
           "title": "\"after all\" hook in \"{root}\"",
           "fullTitle": "\"after all\" hook in \"{root}\"",
           "timedOut": false,
-          "duration": 14,
+          "duration": 18,
           "state": null,
           "speed": null,
           "pass": false,
@@ -37,8 +37,8 @@
           "context": null,
           "code": "const allureReport = allure(['generate', './allure-results', '--clean']);\nallureReport.on('exit', (code) => {\n    if (code === 0) {\n        console.log('Reporte generado con éxito.');\n    } else {\n        console.log('Error al generar el reporte.');\n    }\n});",
           "err": {},
-          "uuid": "42de0608-cf62-4d7f-852f-7426f21de7db",
-          "parentUUID": "019d436f-36fa-4ee3-9c72-825b95d062ef",
+          "uuid": "0e55d8dc-1282-4fd8-881e-6a21b4cda93e",
+          "parentUUID": "9a630440-07c1-4d23-8699-00b2b8c87c4d",
           "isHook": true,
           "skipped": false
         }
@@ -46,7 +46,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "a47bee5f-1c9d-41d0-af32-4b998afaec96",
+          "uuid": "074e45f0-7c9a-4579-96d4-510655b887fd",
           "title": "Login",
           "fullFile": "C:\\Users\\Snook\\OneDrive\\Escritorio\\Prueba Selenium\\tests\\login.js",
           "file": "\\tests\\login.js",
@@ -54,32 +54,32 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "Login with standard_user credentials (test fallido)",
-              "fullTitle": "Login Login with standard_user credentials (test fallido)",
+              "title": "Login with standard_user credentials",
+              "fullTitle": "Login Login with standard_user credentials",
               "timedOut": false,
-              "duration": 14840,
+              "duration": 13198,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "let driver = new Builder().forBrowser('chrome').build();\n// Función para tomar captura de pantalla\nconst takeScreenshot = async (step, driver) => {\n    const screenshot = await driver.takeScreenshot();\n    const screenshotsFolder = path.join(__dirname, 'screenshots');\n    \n    // Crear la carpeta 'screenshots' si no existe\n    if (!fs.existsSync(screenshotsFolder)) {\n        fs.mkdirSync(screenshotsFolder, { recursive: true });\n    }\n    const screenshotPath = path.join(screenshotsFolder, `screenshot_${step}.png`);\n    fs.writeFileSync(screenshotPath, screenshot, 'base64');\n    console.log(`Captura de pantalla tomada: ${screenshotPath}`);\n};\ntry {\n    // Paso 1: Abrir la página\n    await driver.get('https://www.facebook.com');\n    await takeScreenshot('01_open_page', driver); // Captura después de abrir la página\n    // Paso 2: Introducir el nombre de usuario\n    await driver.findElement(By.id('email')).sendKeys('ronal2223@');\n    await takeScreenshot('02_enter_username', driver); // Captura después de introducir el usuario\n    // Paso 3: Introducir la contraseña\n    await driver.findElement(By.css('#pass')).sendKeys('delocho');\n    await takeScreenshot('03_enter_password', driver); // Captura después de introducir la contraseña\n    // Paso 4: Intentar hacer clic en un botón que no existe (esto fallará)\n    await driver.findElement(By.css('[data-testid=\"royal_login_button\"]')).click(); // Elemento incorrecto\n    await takeScreenshot('04_click_login', driver); // Captura después de hacer clic en el botón\n    // Espera para ver el resultado final\n    await driver.sleep(10000);\n    await takeScreenshot('05_final', driver); // Captura final después de la espera\n} catch (err) {\n    console.error(\"Error durante la prueba:\", err);\n    await takeScreenshot('error_scenario', driver); // Captura en caso de error\n} finally {\n    await driver.quit();\n}",
+              "code": "let driver = new Builder().forBrowser('chrome').build();\n// Función para tomar captura de pantalla\nconst takeScreenshot = async (step, driver) => {\n    const screenshot = await driver.takeScreenshot();\n    const screenshotsFolder = path.join(__dirname, 'screenshots');\n    \n    \n    if (!fs.existsSync(screenshotsFolder)) {\n        fs.mkdirSync(screenshotsFolder, { recursive: true });\n    }\n    const screenshotPath = path.join(screenshotsFolder, `screenshot_${step}.png`);\n    fs.writeFileSync(screenshotPath, screenshot, 'base64');\n    console.log(`Captura de pantalla tomada: ${screenshotPath}`);\n};\ntry {\n    \n    await driver.get('http://127.0.0.1:5502/index.html');\n    await takeScreenshot('01_open_page', driver); \n    \n    await driver.findElement(By.id('name')).sendKeys('Rolando Mañon Henriquez');\n    await takeScreenshot('03_enter_username', driver); \n    await driver.findElement(By.id('provincia')).sendKeys('Santo domingo este');\n    await takeScreenshot('04_enter_provincia', driver); \n    await driver.findElement(By.id('ciudad')).sendKeys('Juan Bosch');\n    await takeScreenshot('05_enter_Ciudad', driver); \n    await driver.findElement(By.id('sector')).sendKeys('Palmeras del este');\n    await takeScreenshot('07_enter_sector', driver);\n    await driver.findElement(By.id('calle')).sendKeys('camino real');\n    await takeScreenshot('08_enter_Calle', driver); \n    await driver.findElement(By.id('carrera')).sendKeys('software');\n    await takeScreenshot('09_select_Carrera', driver); \n    \n    // Paso 4: Hacer clic en el botón de login\n    await driver.findElement(By.id('registrar')).click();\n    await takeScreenshot('10_click_registrar', driver); \n    \n    await driver.sleep(10000);\n    await takeScreenshot('05_final', driver); \n} catch (err) {\n    console.error(\"Error durante la prueba:\", err);\n    await takeScreenshot('error_scenario', driver); \n} finally {\n    await driver.quit();\n}",
               "err": {},
-              "uuid": "6aa30cf7-3784-4946-92cb-b66b51abe93d",
-              "parentUUID": "a47bee5f-1c9d-41d0-af32-4b998afaec96",
+              "uuid": "e46b0d86-3499-44e8-8aec-b25077c2f08f",
+              "parentUUID": "074e45f0-7c9a-4579-96d4-510655b887fd",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "6aa30cf7-3784-4946-92cb-b66b51abe93d"
+            "e46b0d86-3499-44e8-8aec-b25077c2f08f"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 14840,
+          "duration": 13198,
           "root": false,
           "rootEmpty": false,
           "_timeout": 0
